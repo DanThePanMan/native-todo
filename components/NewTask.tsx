@@ -4,7 +4,7 @@ import tw from "twrnc";
 export default function NewTask() {
     return (
         <TouchableNativeFeedback>
-            <View style={tw`p-4 rounded-md`}>
+            <View style={tw`p-4 rounded-lg`}>
                 <Text style={tw`text-lg text-white`}>New Task</Text>
             </View>
         </TouchableNativeFeedback>
