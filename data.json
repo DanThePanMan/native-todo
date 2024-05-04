@@ -1,19 +1,12 @@
 [
     {
         "name": "Test",
-        "description": "This is a task for testing"
-
+        "description": "This is a task for testing",
+        "state": "incomplete"
     },
     {
         "name": "Test2",
-        "description": "This is a task for testing 2"
-
+        "description": "This is a task for testing 2",
+        "state": "complete"
     }
-
-
-
-
-
-
-
 ]

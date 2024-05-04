@@ -6,6 +6,7 @@ import tw from "twrnc";
 type item = {
     name: string;
     description: string;
+    state: string;
 };
 
 const TaskList = (props: any) => {
@@ -13,11 +14,35 @@ const TaskList = (props: any) => {
 
     return (
         <ScrollView style={tw`flex flex-col h-[100%] bg-slate-300`}>
-            {data.map((item: any, index: number) => (
-                <React.Fragment key={index}>
-                    <TaskItem content={item.description} title={item.name} />
-                </React.Fragment>
-            ))}
+            {data.map((item: any, index: number) =>
+                item.state == "incomplete" ? (
+                    <React.Fragment key={index}>
+                        <TaskItem
+                            index={index}
+                            content={item.description}
+                            title={item.name}
+                            stateChanger={props.stateChanger}
+                            indexChanger={props.indexChanger}
+                            state="incomplete"
+                        />
+                    </React.Fragment>
+                ) : null
+            )}
+
+            {data.map((item: any, index: number) =>
+                item.state == "complete" ? (
+                    <React.Fragment key={index}>
+                        <TaskItem
+                            index={index}
+                            content={item.description}
+                            title={item.name}
+                            stateChanger={props.stateChanger}
+                            indexChanger={props.indexChanger}
+                            state="complete"
+                        />
+                    </React.Fragment>
+                ) : null
+            )}
         </ScrollView>
     );
 };
