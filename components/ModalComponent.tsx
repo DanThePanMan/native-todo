@@ -4,14 +4,32 @@ import tw from "twrnc";
 function ModalComponent(props: any) {
     function toggleHandler() {
         const dataArray = props.data;
-        const itenIndex = props.index;
+        const itemIndex = props.index;
         const filePath = props.filePath;
 
-        if (dataArray[itenIndex].state === "incomplete") {
-            dataArray[itenIndex].state = "complete";
+        if (dataArray[itemIndex].state === "incomplete") {
+            dataArray[itemIndex].state = "complete";
         } else {
-            dataArray[itenIndex].state = "incomplete";
+            dataArray[itemIndex].state = "incomplete";
         }
+        props.setData(dataArray);
+
+        props.setFileFunction(filePath, dataArray);
+
+        props.closeModal();
+    }
+
+    function delteHandler() {
+        const dataArray = props.data;
+        const itemIndex = props.index;
+        const filePath = props.filePath;
+
+        if (itemIndex < 0) {
+            dataArray.splice(1, itemIndex);
+        } else {
+            dataArray.splice(0, 1);
+        }
+
         props.setData(dataArray);
 
         props.setFileFunction(filePath, dataArray);
@@ -37,7 +55,7 @@ function ModalComponent(props: any) {
                         <View
                             style={tw`bg-white text-blue-500 flex justify-end items-end`}
                         >
-                            <Text style={tw`bg-white text-blue-500`}>
+                            <Text style={tw`bg-white text-blue-500 h-6`}>
                                 Close
                             </Text>
                         </View>
@@ -46,16 +64,16 @@ function ModalComponent(props: any) {
                         <View
                             style={tw`bg-white text-blue-500 flex justify-end items-end`}
                         >
-                            <Text style={tw`bg-white text-blue-500`}>
+                            <Text style={tw`bg-white text-blue-500 h-6`}>
                                 toggle done/undone
                             </Text>
                         </View>
                     </TouchableNativeFeedback>
-                    <TouchableNativeFeedback onPress={props.closeModal}>
+                    <TouchableNativeFeedback onPress={delteHandler}>
                         <View
                             style={tw`bg-white text-blue-500 flex justify-end items-end`}
                         >
-                            <Text style={tw`bg-white text-blue-500`}>
+                            <Text style={tw`bg-white text-blue-500 h-6`}>
                                 delete
                             </Text>
                         </View>
