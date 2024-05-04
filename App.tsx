@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import tw from "twrnc";
 import ModalComponent from "./components/ModalComponent";
-import NewTask from "./components/newTask";
 import TopSection from "./components/TopSection";
 import TaskList from "./components/TaskList";
 import data from "./data.json";
