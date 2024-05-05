@@ -25,7 +25,7 @@ function ModalComponent(props: any) {
         const filePath = props.filePath;
 
         if (itemIndex > 0) {
-            dataArray.splice(1, itemIndex);
+            dataArray.splice(itemIndex, 1);
         } else {
             dataArray.splice(0, 1);
         }
