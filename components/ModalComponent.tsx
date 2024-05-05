@@ -49,7 +49,7 @@ function ModalComponent(props: any) {
             <View
                 style={tw`bg-white flex flex-col justify-between opacity-100 w-84 ml-5 mt-[50%] absolute p-5 rounded-md`}
             >
-                <Text style={tw``}>ModalComponent</Text>
+                <Text style={tw``}>What would you like to do?</Text>
                 <View style={tw`flex flex-row justify-end gap-6 mt-4`}>
                     <TouchableNativeFeedback onPress={props.closeModal}>
                         <View

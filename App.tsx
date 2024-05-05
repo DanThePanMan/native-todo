@@ -1,12 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import {
-    Modal,
-    Pressable,
-    SafeAreaView,
-    ScrollView,
-    Text,
-    View,
-} from "react-native";
+import { Modal, SafeAreaView } from "react-native";
 import tw from "twrnc";
 import ModalComponent from "./components/ModalComponent";
 import TopSection from "./components/TopSection";
@@ -14,6 +7,7 @@ import TaskList from "./components/TaskList";
 import data from "./data.json";
 import { useState } from "react";
 import * as FileSystem from "expo-file-system";
+import NewTaskModal from "./components/NewTaskModal";
 
 type item = {
     name: string;
@@ -38,11 +32,12 @@ const writeArrayToJsonFile = async (filePath: any, dataArray: any) => {
 
 export default function App() {
     const [modalState, setModalState] = useState(false);
+    const [newTaskState, setNewTaskState] = useState(false);
     const [index, setIndex] = useState(0);
     const [storedData, setStoredData] = useState(data);
     return (
         <>
-            <TopSection />
+            <TopSection modalChanger={setNewTaskState} />
             <SafeAreaView style={tw`flex  justify-center items-stretch grow`}>
                 <TaskList
                     data={storedData}
@@ -66,6 +61,23 @@ export default function App() {
                         filePath={file}
                         setFileFunction={writeArrayToJsonFile}
                         closeModal={() => setModalState(false)}
+                    />
+                </Modal>
+
+                <Modal
+                    animationType="none"
+                    transparent={true}
+                    visible={newTaskState}
+                    onRequestClose={() => {
+                        setNewTaskState(!newTaskState);
+                    }}
+                >
+                    <NewTaskModal
+                        data={storedData}
+                        setData={setStoredData}
+                        filePath={file}
+                        setFileFunction={writeArrayToJsonFile}
+                        closeModal={() => setNewTaskState(false)}
                     />
                 </Modal>
             </SafeAreaView>
